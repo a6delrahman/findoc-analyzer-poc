@@ -4,7 +4,6 @@ SharePoint Service - Streamlined for document upload via Microsoft Graph API.
 import logging
 import requests
 from typing import Any, Dict, Optional
-from azure.identity import DefaultAzureCredential
 from env_config import get_config
 import pandas as pd
 from io import BytesIO
@@ -17,6 +16,26 @@ CONTENT_TYPE_DOCX = "application/vnd.openxmlformats-officedocument.wordprocessin
 CONTENT_TYPE_PDF = "application/pdf"
 
 
+def _get_credential():
+    """Get the appropriate Azure credential based on available config."""
+    client_id = config.get("azure_client_id")
+    client_secret = config.get("azure_client_secret")
+    tenant_id = config.get("azure_tenant_id")
+
+    if client_id and client_secret and tenant_id:
+        from azure.identity import ClientSecretCredential
+        logger.info("SharePoint: Using ClientSecretCredential (service principal)")
+        return ClientSecretCredential(
+            tenant_id=tenant_id,
+            client_id=client_id,
+            client_secret=client_secret,
+        )
+    else:
+        from azure.identity import DefaultAzureCredential
+        logger.info("SharePoint: Using DefaultAzureCredential (local dev)")
+        return DefaultAzureCredential()
+
+
 class SharePointService:
     """Handles document upload to SharePoint using Microsoft Graph API."""
     
@@ -25,7 +44,7 @@ class SharePointService:
         hostname: str = "visionandlab.sharepoint.com",
         site_path: str = "/sites/FinDocAnalyser"
     ):
-        self.credential = DefaultAzureCredential()
+        self.credential = _get_credential()
         self.graph_base_url = "https://graph.microsoft.com/v1.0"
         self.hostname = hostname
         self.site_path = site_path

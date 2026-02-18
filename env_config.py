@@ -6,6 +6,8 @@ def get_config():
 
     config = {
         "azure_tenant_id": os.getenv("AZURE_TENANT_ID"),
+        "azure_client_id": os.getenv("AZURE_CLIENT_ID"),
+        "azure_client_secret": os.getenv("AZURE_CLIENT_SECRET"),
         "azure_openai_api_version": os.getenv("AZURE_OPENAI_API_VERSION"),
         "azure_openai_endpoint": os.getenv("AZURE_OPENAI_ENDPOINT"),
         "azure_openai_model": os.getenv("AZURE_OPENAI_MODEL"),
