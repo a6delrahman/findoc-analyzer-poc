@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Caches and outputs (uncomment if you don't want these tracked)
+# cache_markdown/
+# output_reports/
+# output_splits/
+# split_documents/
+# data/
