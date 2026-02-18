@@ -1,0 +1,15 @@
+azure-ai-documentintelligence
+backoff
+PyMuPDF
+arize-phoenix
+arize-phoenix-otel
+openinference-instrumentation-openai
+docling
+openai
+azure-identity
+pypdf
+azure-keyvault-secrets
+docxtpl
+python-docx
+streamlit
+plotly
