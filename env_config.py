@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 
 def get_config():
-    load_dotenv()  # Load environment variables from .env file
+    load_dotenv()
 
     config = {
         "azure_tenant_id": os.getenv("AZURE_TENANT_ID"),
@@ -17,6 +17,9 @@ def get_config():
         "prompt_split": os.getenv("PROMPT_SPLIT"),
         "prompt_steuererklaerung": os.getenv("PROMPT_STEUERERKLAERUNG"),
         "prompt_doc_extraction": os.getenv("PROMPT_DOC_EXTRACTION"),
+        # New API key fields
+        "azure_openai_api_key": os.getenv("AZURE_OPENAI_API_KEY"),
+        "azure_doc_intel_key": os.getenv("AZURE_DOC_INTEL_KEY"),
     }
 
     return config
